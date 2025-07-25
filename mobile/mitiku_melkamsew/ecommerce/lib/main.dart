@@ -1,3 +1,4 @@
+import 'package:ecommerce/update.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Awra Amba')),
-        body: Home(),
+        body: Update(),
       ),
     );
   }
