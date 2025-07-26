@@ -1,5 +1,6 @@
 import 'package:ecommerce/details.dart';
 import 'package:ecommerce/home.dart';
+import 'package:ecommerce/search.dart';
 import 'package:ecommerce/update.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Awra Amba')),
-        body: Details(),
+        body: Search(),
       ),
     );
   }
