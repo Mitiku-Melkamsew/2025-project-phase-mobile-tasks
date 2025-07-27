@@ -201,14 +201,14 @@ class Segment extends StatefulWidget {
 }
 
 class _SegmentState extends State<Segment> {
-  int intView = 41; // Default selected value
+  int intView = 41; 
   final List<int> sizes = [39, 40, 41, 42, 43, 44];
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment:
-          MainAxisAlignment.spaceBetween, // Distributes buttons evenly
+          MainAxisAlignment.spaceBetween, 
       children: sizes.map((size) {
         final isSelected = intView == size;
         return ElevatedButton(
