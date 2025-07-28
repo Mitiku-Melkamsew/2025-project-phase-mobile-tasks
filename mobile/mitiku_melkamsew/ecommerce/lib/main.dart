@@ -10,10 +10,19 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Update());
+    return MaterialApp(
+      initialRoute: '/home',
+      routes: <String, WidgetBuilder> {
+        '/home':(BuildContext context) => const Home(),
+        '/details':(BuildContext context) => const Details(),
+        '/update':(BuildContext context) => const Update(),
+        '/search':(BuildContext context) => const Search(),
+      },
+      debugShowCheckedModeBanner: false,
+      home: Update(),
+    );
   }
 }

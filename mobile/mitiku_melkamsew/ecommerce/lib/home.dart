@@ -1,3 +1,4 @@
+import 'package:ecommerce/utils/card.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -10,9 +11,12 @@ class Home extends StatelessWidget {
         width: 72,
         height: 72,
         child: FloatingActionButton(
+          splashColor: Color(0xff3f62f4),
           shape: CircleBorder(),
           backgroundColor: Color(0xff3F51F3),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/update');
+          },
           child: Icon(Icons.add, color: Color(0xffffffff), size: 36),
         ),
       ),
@@ -138,280 +142,27 @@ class Home extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 15),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(9),
-                      border: Border.all(color: Color(0xffdddddd), width: 1),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/search');
+                    },
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(9),
+                        border: Border.all(color: Color(0xffdddddd), width: 1),
+                      ),
+                      child: Icon(Icons.search_rounded),
                     ),
-                    child: Icon(Icons.search_rounded),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 19),
             Expanded(
-              child: ListView(
-                children: [
-                  Card(
-                    color: Color(0xffffffff),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            topLeft: Radius.circular(16),
-                          ),
-                          child: Image.asset(
-                            'assets/1.jpg',
-                            height: 160,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Derby leather shoes',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                  Text(
-                                    '\$120',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xff3e3e3e),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Men\'s shoe',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0xffaaaaaa),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        size: 20,
-                                        color: Color(0xffFFD700),
-                                      ),
-                                      Text(
-                                        '(4.0)',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xffaaaaaa),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Sora',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Card(
-                    color: Color(0xffffffff),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            topLeft: Radius.circular(16),
-                          ),
-                          child: Image.asset(
-                            'assets/1.jpg',
-                            height: 160,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Derby leather shoes',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                  Text(
-                                    '\$120',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xff3e3e3e),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Men\'s shoe',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0xffaaaaaa),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        size: 20,
-                                        color: Color(0xffFFD700),
-                                      ),
-                                      Text(
-                                        '(4.0)',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xffaaaaaa),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Sora',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Card(
-                    color: Color(0xffffffff),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            topLeft: Radius.circular(16),
-                          ),
-                          child: Image.asset(
-                            'assets/1.jpg',
-                            height: 160,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Derby leather shoes',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                  Text(
-                                    '\$120',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xff3e3e3e),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Men\'s shoe',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0xffaaaaaa),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        size: 20,
-                                        color: Color(0xffFFD700),
-                                      ),
-                                      Text(
-                                        '(4.0)',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xffaaaaaa),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Sora',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              child: ListView(children: [Product(), Product(), Product()]),
             ),
           ],
         ),

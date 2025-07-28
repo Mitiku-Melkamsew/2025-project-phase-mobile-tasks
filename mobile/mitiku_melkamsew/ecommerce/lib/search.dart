@@ -1,3 +1,4 @@
+import 'package:ecommerce/utils/card.dart';
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
@@ -7,18 +8,23 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-          width: 40,
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Color(0xffffffff),
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Color(0xff3F51F3),
-            size: 20,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Color(0xffffffff),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+              color: Color(0xff3F51F3),
+              size: 20,
+            ),
           ),
         ),
         title: Center(
@@ -91,180 +97,7 @@ class Search extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 height: 300,
-                child: ListView(
-                  children: [
-                    Card(
-                      color: Color(0xffffffff),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(16),
-                              topLeft: Radius.circular(16),
-                            ),
-                            child: Image.asset(
-                              'assets/1.jpg',
-                              height: 160,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Derby leather shoes',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                    Text(
-                                      '\$120',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xff3e3e3e),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Men\'s shoe',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color(0xffaaaaaa),
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          size: 20,
-                                          color: Color(0xffFFD700),
-                                        ),
-                                        Text(
-                                          '(4.0)',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0xffaaaaaa),
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: 'Sora',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Card(
-                      color: Color(0xffffffff),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(16),
-                              topLeft: Radius.circular(16),
-                            ),
-                            child: Image.asset(
-                              'assets/1.jpg',
-                              height: 160,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Derby leather shoes',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                    Text(
-                                      '\$120',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xff3e3e3e),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Men\'s shoe',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color(0xffaaaaaa),
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          size: 20,
-                                          color: Color(0xffFFD700),
-                                        ),
-                                        Text(
-                                          '(4.0)',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0xffaaaaaa),
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: 'Sora',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                child: ListView(children: [Product(), Product()]),
               ),
             ),
             Text(

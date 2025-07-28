@@ -13,18 +13,23 @@ class Update extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-          width: 40,
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Color(0xffffffff),
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Color(0xff3F51F3),
-            size: 20,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Color(0xffffffff),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+              color: Color(0xff3F51F3),
+              size: 20,
+            ),
           ),
         ),
         title: Center(
@@ -136,8 +141,11 @@ class Update extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Delete', style: font.copyWith(fontWeight: FontWeight.w600, color: Color(0x80ff1313))
-                  
+                  'Delete',
+                  style: font.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Color(0x80ff1313),
+                  ),
                 ),
               ),
             ],
