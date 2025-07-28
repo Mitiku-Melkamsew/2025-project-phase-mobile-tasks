@@ -25,18 +25,23 @@ class Details extends StatelessWidget {
               Positioned(
                 top: 25,
                 left: 24,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xffffffff),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  child: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    color: Color(0xff3F51F3),
-                    size: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Color(0xffffffff),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: Icon(
+                      Icons.arrow_back_ios_rounded,
+                      color: Color(0xff3F51F3),
+                      size: 20,
+                    ),
                   ),
                 ),
               ),
@@ -201,14 +206,13 @@ class Segment extends StatefulWidget {
 }
 
 class _SegmentState extends State<Segment> {
-  int intView = 41; 
+  int intView = 41;
   final List<int> sizes = [39, 40, 41, 42, 43, 44];
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment:
-          MainAxisAlignment.spaceBetween, 
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: sizes.map((size) {
         final isSelected = intView == size;
         return ElevatedButton(
