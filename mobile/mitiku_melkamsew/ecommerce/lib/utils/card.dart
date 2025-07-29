@@ -1,7 +1,12 @@
+import 'package:ecommerce/data.dart';
 import 'package:flutter/material.dart';
 
-class Product extends StatelessWidget {
-  const Product({super.key});
+class ProductCard extends StatelessWidget {
+  final Product product;
+  const ProductCard({
+    super.key,
+    required this.product
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class Product extends StatelessWidget {
                 topLeft: Radius.circular(16),
               ),
               child: Image.asset(
-                'assets/1.jpg',
+                product.imageurl,
                 height: 160,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -34,7 +39,7 @@ class Product extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Derby leather shoes',
+                        product.name,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -42,7 +47,7 @@ class Product extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '\$120',
+                        '\$${product.price}',
                         style: TextStyle(
                           fontSize: 14,
                           color: Color(0xff3e3e3e),
@@ -56,7 +61,7 @@ class Product extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Men\'s shoe',
+                        product.category,
                         style: TextStyle(
                           fontSize: 12,
                           color: Color(0xffaaaaaa),
