@@ -1,9 +1,16 @@
-import 'package:ecommerce/utils/card.dart';
+import 'package:ecommerce/utils/product_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce/data.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Home extends StatefulWidget {
+  final ProductManager productManager;
+  const Home({super.key, required this.productManager});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,8 +21,19 @@ class Home extends StatelessWidget {
           splashColor: Color(0xff3f62f4),
           shape: CircleBorder(),
           backgroundColor: Color(0xff3F51F3),
-          onPressed: () {
-            Navigator.of(context).pushNamed('/update');
+          onPressed: () async {
+            final result =
+                await Navigator.of(context).pushNamed('/update') as Map;
+            setState(() {
+              Product p = Product(
+                imageurl: 'assets/shoe.jpg',
+                name: result['name'],
+                price: result['price'],
+                category: result['category'],
+                description: result['description'],
+              );
+              widget.productManager.addProduct(p: p);
+            });
           },
           child: Icon(Icons.add, color: Color(0xffffffff), size: 36),
         ),
@@ -41,7 +59,7 @@ class Home extends StatelessWidget {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(11),
-                          child: Image.asset('assets/1.jpg'),
+                          child: Image.asset('assets/shoe.jpg'),
                         ),
                       ),
                       SizedBox(width: 15),
@@ -144,7 +162,11 @@ class Home extends StatelessWidget {
                   padding: EdgeInsets.only(right: 15),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed('/search');
+                      Navigator.of(context).pushNamed(
+                        '/search',
+                        arguments: widget.productManager.products.values
+                            .toList(),
+                      );
                     },
                     child: Container(
                       width: 40,
@@ -162,7 +184,9 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 19),
             Expanded(
-              child: ListView(children: [Product(), Product(), Product()]),
+              child: ProductListView(
+                products: widget.productManager.products.values.toList(),
+              ),
             ),
           ],
         ),

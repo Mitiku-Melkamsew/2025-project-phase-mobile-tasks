@@ -1,28 +1,29 @@
-import 'package:ecommerce/details.dart';
-import 'package:ecommerce/home.dart';
-import 'package:ecommerce/search.dart';
-import 'package:ecommerce/update.dart';
+import 'package:ecommerce/data.dart';
+import 'package:ecommerce/pages/details.dart';
+import 'package:ecommerce/pages/home.dart';
+import 'package:ecommerce/pages/search.dart';
+import 'package:ecommerce/pages/update.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final ProductManager productManager = ProductManager();
+  MyApp({super.key});
   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/home',
       routes: <String, WidgetBuilder> {
-        '/home':(BuildContext context) => const Home(),
+        '/home':(BuildContext context) =>  Home(productManager: productManager),
         '/details':(BuildContext context) => const Details(),
         '/update':(BuildContext context) => const Update(),
         '/search':(BuildContext context) => const Search(),
       },
       debugShowCheckedModeBanner: false,
-      home: Update(),
-    );
+          );
   }
 }
