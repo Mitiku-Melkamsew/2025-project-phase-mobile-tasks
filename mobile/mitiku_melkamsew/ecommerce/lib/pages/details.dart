@@ -6,7 +6,7 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final argument = ModalRoute.of(context)!.settings.arguments;
+    final argument = ModalRoute.of(context)?.settings.arguments;
 
     if (argument == null || argument is! Product) {
       return Scaffold(
@@ -14,6 +14,7 @@ class Details extends StatelessWidget {
         body: const Center(child: Text('Could not load product details.')),
       );
     }
+
     final product = argument;
 
     return Scaffold(

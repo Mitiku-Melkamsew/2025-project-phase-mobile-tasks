@@ -22,18 +22,25 @@ class _HomeState extends State<Home> {
           shape: CircleBorder(),
           backgroundColor: Color(0xff3F51F3),
           onPressed: () async {
-            final result =
-                await Navigator.of(context).pushNamed('/update') as Map;
-            setState(() {
-              Product p = Product(
-                imageurl: 'assets/shoe.jpg',
-                name: result['name'],
-                price: result['price'],
-                category: result['category'],
-                description: result['description'],
-              );
-              widget.productManager.addProduct(p: p);
-            });
+            final res = await Navigator.of(context).pushNamed('/update');
+            if (res == null) {
+            } else if (res is int) {
+              setState(() {
+                widget.productManager.delete(res);
+              });
+            } else {
+              final result = res as Map;
+              setState(() {
+                Product p = Product(
+                  imageurl: 'assets/dress.jpg',
+                  name: result['name'],
+                  price: result['price'],
+                  category: result['category'],
+                  description: result['description'],
+                );
+                widget.productManager.addProduct(p: p);
+              });
+            }
           },
           child: Icon(Icons.add, color: Color(0xffffffff), size: 36),
         ),
@@ -183,6 +190,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 19),
+            
             Expanded(
               child: ProductListView(
                 products: widget.productManager.products.values.toList(),

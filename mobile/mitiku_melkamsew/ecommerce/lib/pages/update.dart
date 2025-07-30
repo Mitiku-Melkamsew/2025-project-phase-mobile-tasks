@@ -11,6 +11,7 @@ class Update extends StatelessWidget {
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
     );
+
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -100,6 +101,24 @@ class _Form extends State<Form> {
     super.dispose();
   }
 
+  _onAdd() {
+    final name = _pdtNameController.text;
+    final category = _categoryController.text;
+    final price = double.tryParse(_priceController.text) ?? 0.0;
+    final description = _descriptionController.text;
+    Navigator.of(context).pop({
+      'name': name,
+      'category': category,
+      'price': price,
+      'description': description,
+    });
+  }
+
+  _onDelete(String id) {
+    int intId = int.tryParse(id) ?? 0;
+    Navigator.of(context).pop(intId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -160,18 +179,7 @@ class _Form extends State<Form> {
         ),
         SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {
-            final name = _pdtNameController.text;
-            final category = _categoryController.text;
-            final price = double.tryParse(_priceController.text) ?? 0.0;
-            final description = _descriptionController.text;
-            Navigator.of(context).pop({
-              'name': name,
-              'category': category,
-              'price': price,
-              'description': description,
-            });
-          },
+          onPressed: _onAdd,
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xff3F51F3),
             minimumSize: Size(double.infinity, 50),
@@ -189,7 +197,7 @@ class _Form extends State<Form> {
         ),
         SizedBox(height: 8),
         TextButton(
-          onPressed: () {},
+          onPressed: () => _onDelete(_pdtNameController.text),
           style: TextButton.styleFrom(
             minimumSize: Size(double.infinity, 50),
             shape: RoundedRectangleBorder(

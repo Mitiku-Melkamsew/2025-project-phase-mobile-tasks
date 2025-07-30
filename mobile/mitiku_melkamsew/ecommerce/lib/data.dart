@@ -67,7 +67,9 @@ class ProductManager {
 
   view() {}
 
-  update() {}
+  delete(id) {
+    products.remove(id);
+  }
 
-  delete() {}
+  update() {}
 }

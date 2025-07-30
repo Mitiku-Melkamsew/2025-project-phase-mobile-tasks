@@ -10,9 +10,7 @@ class ProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (products.isEmpty) {
-      return const Center(
-        child: Text('No products found.'),
-      );
+      return const Center(child: Text('No products found.'));
     }
 
     return ListView.builder(
@@ -21,11 +19,7 @@ class ProductListView extends StatelessWidget {
         final product = products[index];
         return GestureDetector(
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              '/details',
-              arguments: product,
-            );
+            Navigator.pushNamed(context, '/details', arguments: product);
           },
           child: ProductCard(product: product),
         );
