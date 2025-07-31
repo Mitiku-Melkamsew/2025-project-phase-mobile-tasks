@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce/data.dart';
-import 'package:ecommerce/utils/card.dart';
+import '../data.dart';
+import 'card.dart';
 
 class ProductListView extends StatelessWidget {
   final List<Product> products;

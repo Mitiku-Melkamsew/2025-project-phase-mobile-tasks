@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce/data.dart';
+import '../data.dart';
 
 class Details extends StatelessWidget {
   const Details({super.key});
@@ -10,7 +10,7 @@ class Details extends StatelessWidget {
 
     if (argument == null || argument is! Product) {
       return Scaffold(
-        appBar: AppBar(title: const Text("Error")),
+        appBar: AppBar(title: const Text('Error')),
         body: const Center(child: Text('Could not load product details.')),
       );
     }
@@ -47,10 +47,10 @@ class Details extends StatelessWidget {
                       height: 40,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Color(0xffffffff),
+                        color: const Color(0xffffffff),
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_back_ios_rounded,
                         color: Color(0xff3F51F3),
                         size: 20,
@@ -65,13 +65,13 @@ class Details extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         product.category,
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.none,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
@@ -79,7 +79,7 @@ class Details extends StatelessWidget {
                           color: Color(0xffaaaaaa),
                         ),
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Icon(Icons.star, color: Color(0xffFFD700)),
                           Text(
@@ -96,13 +96,13 @@ class Details extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         product.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.none,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w600,
@@ -112,7 +112,7 @@ class Details extends StatelessWidget {
                       ),
                       Text(
                         '\$${product.price}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.none,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w500,
@@ -122,8 +122,8 @@ class Details extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Size:',
                     style: TextStyle(
                       decoration: TextDecoration.none,
@@ -134,12 +134,12 @@ class Details extends StatelessWidget {
                     ),
                   ),
 
-                  Segment(),
-                  SizedBox(height: 20),
+                  const Segment(),
+                  const SizedBox(height: 20),
                   Text(
                     product.description,
                     textAlign: TextAlign.start,
-                    style: TextStyle(
+                    style: const TextStyle(
                       decoration: TextDecoration.none,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500,
@@ -147,7 +147,7 @@ class Details extends StatelessWidget {
                       color: Color(0xff666666),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
@@ -164,13 +164,13 @@ class Details extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(152, 50),
+                      minimumSize: const Size(152, 50),
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Color(0xffff1313)),
+                        side: const BorderSide(color: Color(0xffff1313)),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'DELETE',
                       style: TextStyle(
                         color: Color(0xffff1313),
@@ -183,15 +183,15 @@ class Details extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(152, 50),
-                      maximumSize: Size(152, 50),
-                      backgroundColor: Color(0xff3F51F3),
+                      minimumSize: const Size(152, 50),
+                      maximumSize: const Size(152, 50),
+                      backgroundColor: const Color(0xff3F51F3),
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Color(0xff3F51F3)),
+                        side: const BorderSide(color: Color(0xff3F51F3)),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'UPDATE',
                       style: TextStyle(
                         fontSize: 14,
@@ -235,8 +235,8 @@ class _SegmentState extends State<Segment> {
             });
           },
           style: ElevatedButton.styleFrom(
-            fixedSize: Size(60, 60),
-            backgroundColor: isSelected ? Color(0xff3F51F3) : Colors.white,
+            fixedSize: const Size(60, 60),
+            backgroundColor: isSelected ? const Color(0xff3F51F3) : Colors.white,
             foregroundColor: isSelected ? Colors.white : Colors.black,
             padding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
@@ -244,13 +244,13 @@ class _SegmentState extends State<Segment> {
             ),
 
             side: BorderSide(
-              color: isSelected ? Color(0xff3F51F3) : Color(0xffffffff),
+              color: isSelected ? const Color(0xff3F51F3) : const Color(0xffffffff),
               width: 1,
             ),
           ),
           child: Text(
             '$size',
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: 'Poppins',
               fontSize: 20,
               fontWeight: FontWeight.w500,

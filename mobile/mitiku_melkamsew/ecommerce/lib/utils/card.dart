@@ -1,5 +1,6 @@
-import 'package:ecommerce/data.dart';
 import 'package:flutter/material.dart';
+
+import '../data.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -11,12 +12,12 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color(0xffffffff),
+      color: const Color(0xffffffff),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topRight: Radius.circular(16),
               topLeft: Radius.circular(16),
             ),
@@ -36,7 +37,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       product.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                         fontFamily: 'Poppins',
@@ -44,7 +45,7 @@ class ProductCard extends StatelessWidget {
                     ),
                     Text(
                       '\$${product.price}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Color(0xff3e3e3e),
                         fontWeight: FontWeight.w500,
@@ -58,14 +59,14 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       product.category,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         color: Color(0xffaaaaaa),
                         fontWeight: FontWeight.w400,
                         fontFamily: 'Poppins',
                       ),
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.star, size: 20, color: Color(0xffFFD700)),
                         Text(

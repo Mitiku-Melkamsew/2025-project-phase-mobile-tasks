@@ -1,10 +1,11 @@
-import 'package:ecommerce/data.dart';
-import 'package:ecommerce/pages/details.dart';
-import 'package:ecommerce/pages/home.dart';
-import 'package:ecommerce/pages/search.dart';
-import 'package:ecommerce/pages/update.dart';
-import 'package:ecommerce/utils/animated_navigation.dart';
 import 'package:flutter/material.dart';
+
+import 'data.dart';
+import 'pages/details.dart';
+import 'pages/home.dart';
+import 'pages/search.dart';
+import 'pages/update.dart';
+import 'utils/animated_navigation.dart';
 
 void main() {
   runApp(MyApp());

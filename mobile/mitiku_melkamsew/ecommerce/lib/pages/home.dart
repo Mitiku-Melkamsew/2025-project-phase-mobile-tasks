@@ -1,6 +1,7 @@
-import 'package:ecommerce/utils/product_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/data.dart';
+
+import '../data.dart';
+import '../utils/product_list_view.dart';
 
 class Home extends StatefulWidget {
   final ProductManager productManager;
@@ -18,9 +19,9 @@ class _HomeState extends State<Home> {
         width: 72,
         height: 72,
         child: FloatingActionButton(
-          splashColor: Color(0xff3f62f4),
-          shape: CircleBorder(),
-          backgroundColor: Color(0xff3F51F3),
+          splashColor: const Color(0xff3f62f4),
+          shape: const CircleBorder(),
+          backgroundColor: const Color(0xff3F51F3),
           onPressed: () async {
             final res = await Navigator.of(context).pushNamed('/update');
             if (res == null) {
@@ -42,7 +43,7 @@ class _HomeState extends State<Home> {
               });
             }
           },
-          child: Icon(Icons.add, color: Color(0xffffffff), size: 36),
+          child: const Icon(Icons.add, color: Color(0xffffffff), size: 36),
         ),
       ),
 
@@ -61,7 +62,7 @@ class _HomeState extends State<Home> {
                         width: 50,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Color(0xFFCCCCCC),
+                          color: const Color(0xFFCCCCCC),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: ClipRRect(
@@ -69,15 +70,15 @@ class _HomeState extends State<Home> {
                           child: Image.asset('assets/shoe.jpg'),
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(2.0),
+                          const Padding(
+                            padding: EdgeInsets.all(2.0),
                             child: Text(
-                              "July 14, 2023",
+                              'July 14, 2023',
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontFamily: 'syne',
@@ -86,9 +87,9 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 3),
+                          const SizedBox(height: 3),
                           RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               children: [
                                 TextSpan(
                                   text: 'Hello, ',
@@ -116,18 +117,18 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: const EdgeInsets.only(right: 20),
                     child: Container(
                       width: 40,
                       height: 40,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9),
-                        border: Border.all(color: Color(0xffdddddd), width: 1),
+                        border: Border.all(color: const Color(0xffdddddd), width: 1),
                       ),
                       child: Stack(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.notifications_outlined,
                             color: Colors.grey,
                             size: 24,
@@ -138,7 +139,7 @@ class _HomeState extends State<Home> {
                             child: Container(
                               width: 8,
                               height: 8,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.blue,
                               ),
@@ -151,11 +152,11 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            SizedBox(height: 19),
+            const SizedBox(height: 19),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Available products',
                   style: TextStyle(
                     decoration: TextDecoration.none,
@@ -166,7 +167,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 15),
+                  padding: const EdgeInsets.only(right: 15),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushNamed(
@@ -181,15 +182,15 @@ class _HomeState extends State<Home> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9),
-                        border: Border.all(color: Color(0xffdddddd), width: 1),
+                        border: Border.all(color: const Color(0xffdddddd), width: 1),
                       ),
-                      child: Icon(Icons.search_rounded),
+                      child: const Icon(Icons.search_rounded),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 19),
+            const SizedBox(height: 19),
             
             Expanded(
               child: ProductListView(

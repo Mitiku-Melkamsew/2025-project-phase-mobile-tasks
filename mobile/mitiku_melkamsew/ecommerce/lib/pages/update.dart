@@ -5,7 +5,7 @@ class Update extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var font = TextStyle(
+    var font = const TextStyle(
       color: Color(0xff3e3e3e),
       fontSize: 14,
       fontFamily: 'Poppins',
@@ -23,10 +23,10 @@ class Update extends StatelessWidget {
             height: 40,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Color(0xffffffff),
+              color: const Color(0xffffffff),
               borderRadius: BorderRadius.circular(40),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_rounded,
               color: Color(0xff3F51F3),
               size: 20,
@@ -49,22 +49,22 @@ class Update extends StatelessWidget {
                   width: double.infinity,
                   height: 190,
                   decoration: BoxDecoration(
-                    color: Color(0xfff3f3f3),
+                    color: const Color(0xfff3f3f3),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Color(0xfff3f3f3), width: 1),
+                    border: Border.all(color: const Color(0xfff3f3f3), width: 1),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.image, size: 36, color: Colors.grey[700]),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('upload image', style: font),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-              Form(),
+              const SizedBox(height: 16),
+              const Form(),
             ],
           ),
         ),
@@ -81,7 +81,7 @@ class Form extends StatefulWidget {
 }
 
 class _Form extends State<Form> {
-  var font = TextStyle(
+  var font = const TextStyle(
     color: Color(0xff3e3e3e),
     fontSize: 14,
     fontFamily: 'Poppins',
@@ -101,7 +101,7 @@ class _Form extends State<Form> {
     super.dispose();
   }
 
-  _onAdd() {
+  void _onAdd() {
     final name = _pdtNameController.text;
     final category = _categoryController.text;
     final price = double.tryParse(_priceController.text) ?? 0.0;
@@ -114,7 +114,7 @@ class _Form extends State<Form> {
     });
   }
 
-  _onDelete(String id) {
+  void _onDelete(String id) {
     int intId = int.tryParse(id) ?? 0;
     Navigator.of(context).pop(intId);
   }
@@ -129,33 +129,33 @@ class _Form extends State<Form> {
           controller: _pdtNameController,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xfff3f3f3),
+            fillColor: const Color(0xfff3f3f3),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide.none,
             ),
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text('Category', style: font),
         TextField(
           controller: _categoryController,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xfff3f3f3),
+            fillColor: const Color(0xfff3f3f3),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide.none,
             ),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text('Price', style: font),
         TextField(
           controller: _priceController,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xfff3f3f3),
+            fillColor: const Color(0xfff3f3f3),
             suffixText: '\$',
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
@@ -163,45 +163,45 @@ class _Form extends State<Form> {
             ),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text('Description', style: font),
         TextField(
           maxLines: 3,
           controller: _descriptionController,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xfff3f3f3),
+            fillColor: const Color(0xfff3f3f3),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide.none,
             ),
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         ElevatedButton(
           onPressed: _onAdd,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xff3F51F3),
-            minimumSize: Size(double.infinity, 50),
+            backgroundColor: const Color(0xff3F51F3),
+            minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
           ),
           child: Text(
-            "ADD",
+            'ADD',
             style: font.copyWith(
               fontWeight: FontWeight.w600,
-              color: Color(0x80ffffff),
+              color: const Color(0x80ffffff),
             ),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextButton(
           onPressed: () => _onDelete(_pdtNameController.text),
           style: TextButton.styleFrom(
-            minimumSize: Size(double.infinity, 50),
+            minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: Color(0xffff1313)),
+              side: const BorderSide(color: Color(0xffff1313)),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
@@ -209,7 +209,7 @@ class _Form extends State<Form> {
             'Delete',
             style: font.copyWith(
               fontWeight: FontWeight.w600,
-              color: Color(0x80ff1313),
+              color: const Color(0x80ff1313),
             ),
           ),
         ),

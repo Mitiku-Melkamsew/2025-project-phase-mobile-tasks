@@ -1,6 +1,7 @@
-import 'package:ecommerce/utils/product_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/data.dart';
+
+import '../data.dart';
+import '../utils/product_list_view.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});
@@ -20,17 +21,17 @@ class Search extends StatelessWidget {
             height: 40,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Color(0xffffffff),
+              color: const Color(0xffffffff),
               borderRadius: BorderRadius.circular(40),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_rounded,
               color: Color(0xff3F51F3),
               size: 20,
             ),
           ),
         ),
-        title: Center(
+        title: const Center(
           child: Text(
             'Search product',
             style: TextStyle(
@@ -59,7 +60,7 @@ class Search extends StatelessWidget {
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: 'Leather',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               color: Color(0xff3e3e3e),
                               fontSize: 20,
                               fontFamily: 'Poppins',
@@ -71,8 +72,8 @@ class Search extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Icon(
                           Icons.arrow_forward,
                           color: Color(0xff3F51F3),
@@ -86,10 +87,10 @@ class Search extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Color(0xff3F51F3),
+                      color: const Color(0xff3F51F3),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.filter_list, color: Colors.white),
                     ),
                   ),
@@ -103,7 +104,7 @@ class Search extends StatelessWidget {
                 child: ProductListView(products: products),
               ),
             ),
-            Text(
+            const Text(
               'category',
               style: TextStyle(
                 color: Colors.black,
@@ -113,17 +114,17 @@ class Search extends StatelessWidget {
               ),
               textAlign: TextAlign.start,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xffD9D9D9)),
+                  borderSide: const BorderSide(color: Color(0xffD9D9D9)),
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Price',
               style: TextStyle(
                 color: Colors.black,
@@ -133,24 +134,24 @@ class Search extends StatelessWidget {
               ),
             ),
             RangeSlider(
-              activeColor: Color(0xff3F51F3),
-              values: RangeValues(20, 80),
+              activeColor: const Color(0xff3F51F3),
+              values: const RangeValues(20, 80),
               min: 0,
               max: 100,
               onChanged: (RangeValues values) {},
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff3F51F3),
-                minimumSize: Size(double.infinity, 50),
+                backgroundColor: const Color(0xff3F51F3),
+                minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: Text(
-                "APPLY",
+              child: const Text(
+                'APPLY',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Color(0xffffffff),

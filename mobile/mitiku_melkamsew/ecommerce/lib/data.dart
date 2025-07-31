@@ -58,18 +58,18 @@ class ProductManager {
     ),
   };
   int id = 5;
-  addProduct({required Product p}) {
+  void addProduct({required Product p}) {
     products[id] = p;
     id += 1;
   }
 
-  viewAll() {}
+  void viewAll() {}
 
-  view() {}
+  void view() {}
 
-  delete(id) {
+  void delete(id) {
     products.remove(id);
   }
 
-  update() {}
+  void update() {}
 }
