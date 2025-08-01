@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:ecommerce/features/product/domain/entities/product.dart';
 import 'package:ecommerce/features/product/domain/repositories/product_repository.dart';
 import 'package:ecommerce/features/product/domain/usecases/get_product.dart';
@@ -31,13 +32,13 @@ void main() {
     'should get a single product from the repository by id',
     () async {
       // Arrange
-      when(mockProductRepository.getProduct(any)).thenAnswer((_) async => tProduct);
+      when(mockProductRepository.getProduct(any)).thenAnswer((_) async => Right(tProduct));
 
       // Act
       final result = await usecase(tProductId);
 
       // Assert
-      expect(result, tProduct);
+      expect(result, Right(tProduct));
       verify(mockProductRepository.getProduct(tProductId));
       verifyNoMoreInteractions(mockProductRepository);
     },
