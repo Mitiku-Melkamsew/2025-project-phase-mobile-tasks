@@ -67,7 +67,7 @@ class ProductManager {
 
   void view() {}
 
-  void delete(id) {
+  void delete(int id) {
     products.remove(id);
   }
 
