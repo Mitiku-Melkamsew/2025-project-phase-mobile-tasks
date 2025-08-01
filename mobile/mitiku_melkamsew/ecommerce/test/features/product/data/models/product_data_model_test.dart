@@ -6,21 +6,20 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   const tProductModel = ProductModel(
     id: 1,
-    name: 'HP Victus 15',
-    description: 'Personal computer',
-    imageUrl:
-        'https://www.omen.com/content/dam/sites/omen/worldwide/laptops/2022-victus-15-intel/Hero%20Image%203.png',
-    price: 123.45,
-    category: 'abst',
+    name: 'Wall-E',
+    description: 'A robot that used to collect garbage on earth',
+    imageUrl: 'image',
+    price: 999.99,
+    category: 'Robot',
   );
 
   final tProductJson = {
     'id': 1,
-    'name': 'HP Victus 15',
-    'description': 'Personal computer',
-    'imageUrl': 'https://www.omen.com/content/dam/sites/omen/worldwide/laptops/2022-victus-15-intel/Hero%20Image%203.png',
-    'price': 123.45,
-    'category': 'abst'
+    'name': 'Wall-E',
+    'description': 'A robot that used to collect garbage on earth',
+    'imageUrl': 'image',
+    'price': 999.99,
+    'category': 'Robot'
   };
 
   test('toJson should convert ProductModel to JSON', () async {
