@@ -1,9 +1,9 @@
 import '../repositories/product_repository.dart';
 
-class UpdateProduct {
+class DeleteProduct {
   final ProductRepository repository;
 
-  UpdateProduct(this.repository);
+  DeleteProduct(this.repository);
 
   Future<void> call(int id) async {
     return await repository.deleteProduct(id);

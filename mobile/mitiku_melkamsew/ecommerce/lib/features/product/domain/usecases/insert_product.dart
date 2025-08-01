@@ -1,10 +1,10 @@
 import '../entities/product.dart';
 import '../repositories/product_repository.dart';
 
-class UpdateProduct {
+class InsertProduct {
   final ProductRepository repository;
 
-  UpdateProduct(this.repository);
+  InsertProduct(this.repository);
 
   Future<void> call(Product product) async {
     return await repository.insertProduct(product);
