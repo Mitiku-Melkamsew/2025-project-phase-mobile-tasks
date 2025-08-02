@@ -1,13 +1,11 @@
+import 'package:dartz/dartz.dart';
 import 'package:ecommerce/features/product/domain/entities/product.dart';
-import 'package:ecommerce/features/product/domain/repositories/product_repository.dart';
 import 'package:ecommerce/features/product/domain/usecases/get_product.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'get_product_test.mocks.dart';
+import '../../../../helper/mocks.mocks.dart';
 
-@GenerateMocks([ProductRepository])
 void main() {
   late GetProduct usecase;
   late MockProductRepository mockProductRepository;
@@ -31,13 +29,13 @@ void main() {
     'should get a single product from the repository by id',
     () async {
       // Arrange
-      when(mockProductRepository.getProduct(any)).thenAnswer((_) async => tProduct);
+      when(mockProductRepository.getProduct(any)).thenAnswer((_) async => Right(tProduct));
 
       // Act
       final result = await usecase(tProductId);
 
       // Assert
-      expect(result, tProduct);
+      expect(result, Right(tProduct));
       verify(mockProductRepository.getProduct(tProductId));
       verifyNoMoreInteractions(mockProductRepository);
     },
