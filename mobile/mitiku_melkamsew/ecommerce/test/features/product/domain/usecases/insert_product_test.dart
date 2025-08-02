@@ -1,13 +1,11 @@
 import 'package:ecommerce/features/product/domain/entities/product.dart';
-import 'package:ecommerce/features/product/domain/repositories/product_repository.dart';
 import 'package:ecommerce/features/product/domain/usecases/insert_product.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'insert_product_test.mocks.dart';
+import '../../../../helper/mocks.mocks.dart';
 
-@GenerateMocks([ProductRepository])
+
 void main() {
   late InsertProduct usecase;
   late MockProductRepository mockProductRepository;

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/platform/network_info.dart';
 import '../../domain/entities/product.dart';
@@ -18,26 +19,54 @@ class ProductRepositoryImpl implements ProductRepository {
     required this.networkInfo,
   });
   @override
-  Future<void> deleteProduct(int id) {
-    // TODO: implement deleteProduct
+  Future<void> deleteProduct(int id) async {
+    if (await networkInfo.isConnected) {
+      remoteDataSource.deleteProduct(id);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<Either<Failure, Product>> getProduct(int id) async {
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, Product>> getProduct(int id) {
-    // TODO: implement getProduct
-    throw UnimplementedError();
+  Future<void> insertProduct(Product product) async {
+    if (await networkInfo.isConnected) {
+      remoteDataSource.insertProduct(product);
+    } else {
+      throw ServerException();
+    }
   }
 
   @override
-  Future<void> insertProduct(Product product) {
-    // TODO: implement insertProduct
-    throw UnimplementedError();
+  Future<void> updateProduct(Product product) async {
+    if (await networkInfo.isConnected) {
+      remoteDataSource.updateProduct(product);
+    } else {
+      throw ServerException();
+    }
   }
 
   @override
-  Future<void> updateProduct(Product product) {
-    // TODO: implement updateProduct
-    throw UnimplementedError();
+  Future<Either<Failure, List<Product>>> getProducts() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteProducts = await remoteDataSource.getProducts();
+        localDataSource.cacheProducts(remoteProducts);
+        return Right(remoteProducts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localProducts = await localDataSource.getLastProducts();
+        return Right(localProducts);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
+    }
   }
 }

@@ -1,12 +1,11 @@
-import 'package:ecommerce/features/product/domain/repositories/product_repository.dart';
 import 'package:ecommerce/features/product/domain/usecases/delete_product.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'delete_product_test.mocks.dart';
+import '../../../../helper/mocks.mocks.dart';
 
-@GenerateMocks([ProductRepository])
+
+
 void main() {
   late DeleteProduct usecase;
   late MockProductRepository mockProductRepository;
