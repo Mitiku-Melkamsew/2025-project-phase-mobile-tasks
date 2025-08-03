@@ -97,6 +97,7 @@ class MockProductRepository extends _i1.Mock implements _i5.ProductRepository {
             Invocation.method(#getProduct, [id]),
             returnValue: _i6.Future<_i2.Either<_i8.Failure, _i7.Product>>.value(
               _FakeEither_0<_i8.Failure, _i7.Product>(
+
                 this,
                 Invocation.method(#getProduct, [id]),
               ),
@@ -111,12 +112,14 @@ class MockProductRepository extends _i1.Mock implements _i5.ProductRepository {
             returnValue:
                 _i6.Future<_i2.Either<_i8.Failure, List<_i7.Product>>>.value(
                   _FakeEither_0<_i8.Failure, List<_i7.Product>>(
+
                     this,
                     Invocation.method(#getProducts, []),
                   ),
                 ),
           )
           as _i6.Future<_i2.Either<_i8.Failure, List<_i7.Product>>>);
+
 }
 
 /// A class which mocks [ProductLocalDataSource].
@@ -124,6 +127,7 @@ class MockProductRepository extends _i1.Mock implements _i5.ProductRepository {
 /// See the documentation for Mockito's code generation for more information.
 class MockProductLocalDataSource extends _i1.Mock
     implements _i9.ProductLocalDataSource {
+
   MockProductLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -193,13 +197,16 @@ class MockProductLocalDataSource extends _i1.Mock
             returnValueForMissingStub: _i6.Future<void>.value(),
           )
           as _i6.Future<void>);
+
 }
 
 /// A class which mocks [ProductRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductRemoteDataSource extends _i1.Mock
+
     implements _i10.ProductRemoteDataSource {
+
   MockProductRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -250,12 +257,14 @@ class MockProductRemoteDataSource extends _i1.Mock
             ),
           )
           as _i6.Future<List<_i3.ProductModel>>);
+
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNetworkInfo extends _i1.Mock implements _i11.NetworkInfo {
+
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
@@ -511,4 +520,5 @@ class MockInternetConnectionChecker extends _i1.Mock
     Invocation.method(#dispose, []),
     returnValueForMissingStub: null,
   );
+
 }
