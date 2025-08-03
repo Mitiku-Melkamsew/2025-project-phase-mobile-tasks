@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Sample Product 1",
+    "description": "This is a sample product from the fixture.",
+    "price": 99.99,
+    "imageUrl": "http://example.com/image1.png",
+    "category": "Sample"
+  },
+  {
+    "id": 2,
+    "name": "Sample Product 2",
+    "description": "This is another sample product.",
+    "price": 49.50,
+    "imageUrl": "http://example.com/image2.png",
+    "category": "Sample"
+  }
+]

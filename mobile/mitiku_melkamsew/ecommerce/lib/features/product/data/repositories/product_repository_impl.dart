@@ -7,6 +7,7 @@ import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
 import '../data_sources/product_local_data_source.dart';
 import '../data_sources/product_remote_data_source.dart';
+import '../models/product_data_model.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDataSource remoteDataSource;
@@ -55,7 +56,15 @@ class ProductRepositoryImpl implements ProductRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteProducts = await remoteDataSource.getProducts();
-        localDataSource.cacheProducts(remoteProducts);
+        final List<ProductModel> productsToCache = [];
+        if (remoteProducts.length >= 10){
+          for (var i = 0; i < 10; i++) {
+            productsToCache.add(remoteProducts[i]);
+          }
+        }else{
+          productsToCache.addAll(remoteProducts);
+        }
+        localDataSource.cacheProducts(productsToCache);
         return Right(remoteProducts);
       } on ServerException {
         return Left(ServerFailure());

@@ -20,6 +20,7 @@ import 'package:ecommerce/features/product/domain/repositories/product_repositor
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:shared_preferences/shared_preferences.dart' as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -127,53 +128,6 @@ class MockProductLocalDataSource extends _i1.Mock
   MockProductLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
-
-  @override
-  _i6.Future<void> insertProduct(_i7.Product? product) =>
-      (super.noSuchMethod(
-            Invocation.method(#insertProduct, [product]),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
-          )
-          as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> updateProduct(_i7.Product? product) =>
-      (super.noSuchMethod(
-            Invocation.method(#updateProduct, [product]),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
-          )
-          as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> deleteProduct(int? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteProduct, [id]),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
-          )
-          as _i6.Future<void>);
-
-  @override
-  _i6.Future<_i3.ProductModel> getProduct(int? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#getProduct, [id]),
-            returnValue: _i6.Future<_i3.ProductModel>.value(
-              _FakeProductModel_1(this, Invocation.method(#getProduct, [id])),
-            ),
-          )
-          as _i6.Future<_i3.ProductModel>);
-
-  @override
-  _i6.Future<List<_i3.ProductModel>> getProducts() =>
-      (super.noSuchMethod(
-            Invocation.method(#getProducts, []),
-            returnValue: _i6.Future<List<_i3.ProductModel>>.value(
-              <_i3.ProductModel>[],
-            ),
-          )
-          as _i6.Future<List<_i3.ProductModel>>);
 
   @override
   _i6.Future<List<_i3.ProductModel>> getLastProducts() =>
@@ -511,4 +465,144 @@ class MockInternetConnectionChecker extends _i1.Mock
     Invocation.method(#dispose, []),
     returnValueForMissingStub: null,
   );
+}
+
+/// A class which mocks [SharedPreferencesAsync].
+///
+/// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
+class MockSharedPreferencesAsync extends _i1.Mock
+    implements _i12.SharedPreferencesAsync {
+  MockSharedPreferencesAsync() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<Set<String>> getKeys({Set<String>? allowList}) =>
+      (super.noSuchMethod(
+            Invocation.method(#getKeys, [], {#allowList: allowList}),
+            returnValue: _i6.Future<Set<String>>.value(<String>{}),
+          )
+          as _i6.Future<Set<String>>);
+
+  @override
+  _i6.Future<Map<String, Object?>> getAll({Set<String>? allowList}) =>
+      (super.noSuchMethod(
+            Invocation.method(#getAll, [], {#allowList: allowList}),
+            returnValue: _i6.Future<Map<String, Object?>>.value(
+              <String, Object?>{},
+            ),
+          )
+          as _i6.Future<Map<String, Object?>>);
+
+  @override
+  _i6.Future<bool?> getBool(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getBool, [key]),
+            returnValue: _i6.Future<bool?>.value(),
+          )
+          as _i6.Future<bool?>);
+
+  @override
+  _i6.Future<int?> getInt(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getInt, [key]),
+            returnValue: _i6.Future<int?>.value(),
+          )
+          as _i6.Future<int?>);
+
+  @override
+  _i6.Future<double?> getDouble(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getDouble, [key]),
+            returnValue: _i6.Future<double?>.value(),
+          )
+          as _i6.Future<double?>);
+
+  @override
+  _i6.Future<String?> getString(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getString, [key]),
+            returnValue: _i6.Future<String?>.value(),
+          )
+          as _i6.Future<String?>);
+
+  @override
+  _i6.Future<List<String>?> getStringList(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getStringList, [key]),
+            returnValue: _i6.Future<List<String>?>.value(),
+          )
+          as _i6.Future<List<String>?>);
+
+  @override
+  _i6.Future<bool> containsKey(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#containsKey, [key]),
+            returnValue: _i6.Future<bool>.value(false),
+          )
+          as _i6.Future<bool>);
+
+  @override
+  _i6.Future<void> setBool(String? key, bool? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setBool, [key, value]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> setInt(String? key, int? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setInt, [key, value]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> setDouble(String? key, double? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setDouble, [key, value]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> setString(String? key, String? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setString, [key, value]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> setStringList(String? key, List<String>? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setStringList, [key, value]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> remove(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#remove, [key]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> clear({Set<String>? allowList}) =>
+      (super.noSuchMethod(
+            Invocation.method(#clear, [], {#allowList: allowList}),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
 }
