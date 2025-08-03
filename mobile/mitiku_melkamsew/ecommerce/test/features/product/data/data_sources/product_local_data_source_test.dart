@@ -30,17 +30,23 @@ void main() {
   ];
 
   group('getLastProducts', () {
-    final List<dynamic> jsonList = json.decode(fixture('products.json'));
-    final expectedProductList = jsonList.map((json) => ProductModel.fromJson(json)).toList();
+    late List<ProductModel> expectedProductList;
+    setUp(() {
+      final List<dynamic> jsonList = json.decode(fixture('products.json'));
+      expectedProductList = jsonList
+          .map((json) => ProductModel.fromJson(json))
+          .toList();
+    });
 
     test(
       'should return List<ProductModel> from SharedPreferences when there is one in the cache',
       () async {
-        when(mockSharedPreferences.getString(any))
-            .thenAnswer((_) async => fixture('products.json'));
-        
+        when(
+          mockSharedPreferences.getString(any),
+        ).thenAnswer((_) async => fixture('products.json'));
+
         final result = await dataSource.getLastProducts();
-        
+
         verify(mockSharedPreferences.getString(CACHED_PRODUCTS));
         expect(result, equals(expectedProductList));
       },
@@ -49,20 +55,23 @@ void main() {
     test('should throw a CacheException when there is no cached value', () {
       when(mockSharedPreferences.getString(any)).thenAnswer((_) async => null);
       final call = dataSource.getLastProducts;
-      
+
       expect(() => call(), throwsA(isA<CacheException>()));
     });
   });
 
   group('cacheProducts', () {
     test('should call SharedPreferences to cache the data', () async {
-    final expectedJsonString = json.encode(tProductModelList.map((p) => p.toJson()).toList());
-      when(mockSharedPreferences.setString(any, any)).thenAnswer((_) async => true);
+      final expectedJsonString = json.encode(
+        tProductModelList.map((p) => p.toJson()).toList(),
+      );
+      when(
+        mockSharedPreferences.setString(any, any),
+      ).thenAnswer((_) async => true);
       await dataSource.cacheProducts(tProductModelList);
-      verify(mockSharedPreferences.setString(
-        CACHED_PRODUCTS,
-        expectedJsonString,
-      ));
+      verify(
+        mockSharedPreferences.setString(CACHED_PRODUCTS, expectedJsonString),
+      );
     });
   });
 }
