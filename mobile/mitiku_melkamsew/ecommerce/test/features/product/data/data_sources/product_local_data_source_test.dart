@@ -20,12 +20,11 @@ void main() {
 
   final tProductModelList = [
     const ProductModel(
-      id: 1,
-      name: 'Test Product',
-      description: 'Test Description',
-      price: 10.0,
-      imageUrl: 'test.com/image.jpg',
-      category: 'Test Category',
+      id: '1',
+      name: 'Wall-E',
+      description: 'A robot that collects human garbage.',
+      imageUrl: 'robot.jpg',
+      price: 49.99,
     ),
   ];
 

@@ -15,15 +15,15 @@ void main() {
     usecase = GetProduct(mockProductRepository);
   });
 
-  const tProductId = 1;
+  const tProductId = '1';
   final tProduct = const Product(
-    id: tProductId,
-    name: 'Test Product',
-    description: 'Test Description',
-    imageUrl: 'test.jpg',
-    price: 99.99,
-    category: 'Test Category'
+    id: '1',
+    name: 'Wall-E',
+    description: 'A robot that collects human garbage.',
+    imageUrl: 'robot.jpg',
+    price: 49.99,
   );
+
 
   test(
     'should get a single product from the repository by id',

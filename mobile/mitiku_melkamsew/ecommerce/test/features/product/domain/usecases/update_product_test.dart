@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:ecommerce/features/product/domain/entities/product.dart';
 import 'package:ecommerce/features/product/domain/usecases/update_product.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,22 +15,21 @@ void main() {
     usecase = UpdateProduct(mockProductRepository);
   });
 
-  final tProductToUpdate = const Product(
-    id: 1,
-    name: 'Updated Product',
-    description: 'Updated Description',
-    imageUrl: 'updated.jpg',
-    price: 29.99,
-    category: 'Robot'
+  final tProduct = const Product(
+    id: '1',
+    name: 'Wall-E',
+    description: 'A robot that collects human garbage.',
+    imageUrl: 'robot.jpg',
+    price: 49.99,
   );
 
   test('should call updateProduct on the repository with the correct product', () async {
     when(mockProductRepository.updateProduct(any))
-        .thenAnswer((_) async => Future.value());
+        .thenAnswer((_) async => const Right(null));
 
-    await usecase(tProductToUpdate);
+    await usecase(tProduct);
 
-    verify(mockProductRepository.updateProduct(tProductToUpdate));
+    verify(mockProductRepository.updateProduct(tProduct));
     verifyNoMoreInteractions(mockProductRepository);
   });
 }

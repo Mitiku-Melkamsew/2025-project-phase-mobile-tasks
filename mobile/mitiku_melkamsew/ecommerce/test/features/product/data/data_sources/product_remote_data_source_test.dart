@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:ecommerce/core/error/exceptions.dart';
 import 'package:ecommerce/features/product/data/data_sources/product_remote_data_source.dart';
@@ -17,7 +16,7 @@ void main() {
   late MockClient mockClient;
   late ProductRemoteDataSourceImpl remoteDataSource;
   const String baseUrl =
-      'https://g5-flutter-learning-path-be.onrender.com/api/v1';
+      'https://g5-flutter-learning-path-be.onrender.com/api/v1/products';
 
   setUp(() {
     mockClient = MockClient();
@@ -25,13 +24,12 @@ void main() {
   });
 
   final tProduct = const Product(
-    id: 1,
-    name: 'PC',
-    description: 'long description',
-    price: 123.0,
+    id: '1',
+    name: 'Wall-E',
+    description: 'A robot that collects human garbage.',
     imageUrl:
         r'C:\Users\Mitiku Melkamsew\Documents\A2SV\Mobile\2025-project-phase-mobile-tasks\mobile\mitiku_melkamsew\ecommerce\assets\phone.jpg',
-    category: 'Electronics',
+    price: 49.99,
   );
   group('get products', () {
     test('Should send a correct request with header for the client', () async {
@@ -42,7 +40,9 @@ void main() {
 
       verify(
         mockClient.get(
-          Uri.parse('https://g5-flutter-learning-path-be.onrender.com/'),
+          Uri.parse(
+            baseUrl,
+          ),
           headers: {'content-type': 'application/json'},
         ),
       );
@@ -89,7 +89,7 @@ void main() {
         final request = captured.first as http.MultipartRequest;
 
         expect(request.method, 'POST');
-        expect(request.url.toString(), '$baseUrl/products');
+        expect(request.url.toString(), baseUrl);
         expect(request.fields['name'], tProduct.name);
         expect(request.fields['description'], tProduct.description);
         expect(request.fields['price'], tProduct.price.toString());
@@ -113,27 +113,31 @@ void main() {
     );
   });
 
-  group('updateProduct (PUT multipart/form-data)', () {
-    test(
-      'should perform a PUT multipart request with the correct data',
-      () async {
-        when(
-          mockClient.send(any),
-        ).thenAnswer((_) async => http.StreamedResponse(Stream.value([]), 200));
-        await remoteDataSource.updateProduct(tProduct);
+  group('updateProduct', () {
+    test('should perform a PUT request with the correct data', () async {
+      when(
+        mockClient.put(any, body: anyNamed('body')),
+      ).thenAnswer((_) async => http.Response('body', 200));
 
-        final captured = verify(mockClient.send(captureAny)).captured;
-        final request = captured.first as http.MultipartRequest;
+      await remoteDataSource.updateProduct(tProduct);
 
-        expect(request.method, 'PUT');
-        expect(request.url.toString(), '$baseUrl/products/${tProduct.id}');
-        expect(request.fields['name'], tProduct.name);
-      },
-    );
+      verify(
+        mockClient.put(
+          Uri.parse(
+            'https://g5-flutter-learning-path-be.onrender.com/api/v1/products/${tProduct.id}',
+          ),
+          body: jsonEncode({
+            'name': tProduct.name,
+            'description': tProduct.description,
+            'price': tProduct.price,
+          }),
+        ),
+      );
+    });
   });
 
   group('deleteProduct (DELETE)', () {
-    const tProductId = 1;
+    const tProductId = '1';
     test('should perform a DELETE request to the correct URL', () async {
       when(
         mockClient.delete(any, headers: anyNamed('headers')),
@@ -142,7 +146,7 @@ void main() {
 
       verify(
         mockClient.delete(
-          Uri.parse('$baseUrl/products/$tProductId'),
+          Uri.parse('$baseUrl/$tProductId'),
           headers: {'content-type': 'application/json'},
         ),
       );

@@ -47,7 +47,7 @@ void main() {
   }
 
   group('deleteProduct', () {
-    final tId = 1;
+    final tId = '1';
     test('should call the remote data source when device is online', () async {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(
@@ -63,29 +63,25 @@ void main() {
     });
 
     test('should throw ServerFailure when remote call fails', () async {
-      // Arrange
+      
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(
         mockProductRemoteDataSource.deleteProduct(tId),
       ).thenThrow(ServerException());
 
-      // Act
-      final call = repository.deleteProduct;
-      
-            // Assert
-            expect(() => call(tId), throwsA(isA<ServerException>()));
+      final result = await repository.deleteProduct(tId);
+
+      expect(result, Left(ServerFailure()));
     });
   });
   group('insertProduct', () {
     final tProduct = const Product(
-      id: 1,
-      name: 'Test Product',
-      description: 'Test Desc',
-      price: 1.0,
-      imageUrl: 'test.com',
-      category: 'Test Cat',
+      id: '1',
+      name: 'Wall-E',
+      description: 'A robot that collects human garbage.',
+      imageUrl: 'robot.jpg',
+      price: 49.99,
     );
-
     test('should call the remote data source when device is online', () async {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(
@@ -108,20 +104,19 @@ void main() {
       ).thenThrow(ServerException());
 
       // Act
-      final call = repository.insertProduct;
+      final result = await repository.insertProduct(tProduct);
 
       // Assert
-      expect(() => call(tProduct), throwsA(isA<ServerException>()));
+      expect(result, Left(ServerFailure()));
     });
   });
   group('updateProduct', () {
     final tProduct = const Product(
-      id: 1,
-      name: 'Test Product',
-      description: 'Test Desc',
-      price: 1.0,
-      imageUrl: 'test.com',
-      category: 'Test Cat',
+      id: '1',
+      name: 'Wall-E',
+      description: 'A robot that collects human garbage.',
+      imageUrl: 'robot.jpg',
+      price: 49.99,
     );
 
     test('should call the remote data source when device is online', () async {
@@ -138,7 +133,7 @@ void main() {
       verifyNoMoreInteractions(mockProductRemoteDataSource);
     });
 
-    test('should throw ServerFailure when remote call fails', () async {
+    test('should return ServerFailure when remote call fails', () async {
       // Arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(
@@ -146,21 +141,20 @@ void main() {
       ).thenThrow(ServerException());
 
       // Act
-      final call = repository.updateProduct;
+      final result = await repository.updateProduct(tProduct);
 
       // Assert
-      expect(() => call(tProduct), throwsA(isA<ServerException>()));
+      expect(result, Left(ServerFailure()));
     });
   });
   group('getProducts', () {
     final tProductModelList = [
       const ProductModel(
-        id: 1,
-        name: 'Test Product',
-        description: 'Test Description',
-        price: 10.0,
-        imageUrl: 'test.com/image.jpg',
-        category: 'Test Category',
+        id: '1',
+        name: 'Wall-E',
+        description: 'A robot that collects human garbage.',
+        imageUrl: 'robot.jpg',
+        price: 49.99,
       ),
     ];
     final List<Product> tProductList = tProductModelList;
@@ -182,6 +176,7 @@ void main() {
         'should return remote data when the call to remote data source is successful',
         () async {
           // Arrange
+          when(mockNetworkInfo.isConnected).thenAnswer((_) => Future.value(true));
           when(
             mockProductRemoteDataSource.getProducts(),
           ).thenAnswer((_) async => tProductModelList);

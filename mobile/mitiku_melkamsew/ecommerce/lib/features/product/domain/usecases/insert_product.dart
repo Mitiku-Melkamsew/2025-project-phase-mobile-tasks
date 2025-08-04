@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/error/failures.dart';
 import '../entities/product.dart';
 import '../repositories/product_repository.dart';
 
@@ -6,7 +9,7 @@ class InsertProduct {
 
   InsertProduct(this.repository);
 
-  Future<void> call(Product product) async {
+  Future<Either<Failure, void>> call(Product product) async {
     return await repository.insertProduct(product);
   }
 }

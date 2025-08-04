@@ -20,34 +20,68 @@ class ProductRepositoryImpl implements ProductRepository {
     required this.networkInfo,
   });
   @override
-  Future<void> deleteProduct(int id) async {
+  Future<Either<Failure, void>> deleteProduct(String id) async {
     if (await networkInfo.isConnected) {
-      remoteDataSource.deleteProduct(id);
+      try {
+        final remoteRes = await remoteDataSource.deleteProduct(id);
+        return Right(remoteRes);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
     } else {
-      throw ServerException();
+      try {
+        final localRes = await localDataSource.deleteProduct(id);
+        return Right(localRes);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
     }
   }
 
   @override
-  Future<Either<Failure, Product>> getProduct(int id) async {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> insertProduct(Product product) async {
+  Future<Either<Failure, ProductModel>> getProduct(String id) async {
     if (await networkInfo.isConnected) {
-      remoteDataSource.insertProduct(product);
+      try {
+        final remoteProduct = await remoteDataSource.getProduct(id);
+        return Right(remoteProduct);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
     } else {
-      throw ServerException();
+      try {
+        final localProduct = await localDataSource.getProduct(id);
+        return Right(localProduct);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
     }
   }
 
   @override
-  Future<void> updateProduct(Product product) async {
+  Future<Either<Failure, void>> insertProduct(Product product) async {
     if (await networkInfo.isConnected) {
-      remoteDataSource.updateProduct(product);
+      try {
+        final remoteRes = remoteDataSource.insertProduct(product);
+        return Right(remoteRes);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
     } else {
-      throw ServerException();
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateProduct(Product product) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteRes = remoteDataSource.updateProduct(product);
+        return Right(remoteRes);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
     }
   }
 
@@ -57,11 +91,11 @@ class ProductRepositoryImpl implements ProductRepository {
       try {
         final remoteProducts = await remoteDataSource.getProducts();
         final List<ProductModel> productsToCache = [];
-        if (remoteProducts.length >= 10){
+        if (remoteProducts.length >= 10) {
           for (var i = 0; i < 10; i++) {
             productsToCache.add(remoteProducts[i]);
           }
-        }else{
+        } else {
           productsToCache.addAll(remoteProducts);
         }
         localDataSource.cacheProducts(productsToCache);

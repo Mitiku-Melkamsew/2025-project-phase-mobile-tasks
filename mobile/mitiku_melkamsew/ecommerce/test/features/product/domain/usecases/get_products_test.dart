@@ -11,14 +11,13 @@ void main() {
     mockProductRepository = MockProductRepository();
   });
   final List<Product> tProductList = const [
-    Product(
-      id: 1,
-      name: 'Test Product',
-      description: 'Test Description',
-      imageUrl: 'test.jpg',
-      price: 99.99,
-      category: 'Test Category',
-    ),
+ Product(
+    id: '1',
+    name: 'Wall-E',
+    description: 'A robot that collects human garbage.',
+    imageUrl: 'robot.jpg',
+    price: 49.99,
+  )
   ];
   test('Should call getproducts in product repository', () async {
     when(

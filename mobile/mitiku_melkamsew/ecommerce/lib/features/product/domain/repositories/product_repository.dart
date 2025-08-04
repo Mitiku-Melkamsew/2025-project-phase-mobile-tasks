@@ -4,10 +4,10 @@ import '../../../../core/error/failures.dart';
 import '../entities/product.dart';
 
 abstract class ProductRepository {
-  Future<void> insertProduct(Product product);
-  Future<void> updateProduct(Product product);
-  Future<void> deleteProduct(int id);
-  Future<Either<Failure, Product>> getProduct(int id);
+  Future<Either<Failure, void>> insertProduct(Product product);
+  Future<Either<Failure, void>> updateProduct(Product product);
+  Future<Either<Failure, void>> deleteProduct(String id);
+  Future<Either<Failure, Product>> getProduct(String id);
   Future<Either<Failure, List<Product>>> getProducts();
 
 }
