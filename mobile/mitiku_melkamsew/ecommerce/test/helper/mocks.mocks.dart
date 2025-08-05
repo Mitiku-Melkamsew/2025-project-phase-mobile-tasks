@@ -180,15 +180,6 @@ class MockProductLocalDataSource extends _i1.Mock
           as _i7.Future<void>);
 
   @override
-  _i7.Future<void> deleteProduct(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteProduct, [id]),
-            returnValue: _i7.Future<void>.value(),
-            returnValueForMissingStub: _i7.Future<void>.value(),
-          )
-          as _i7.Future<void>);
-
-  @override
   _i7.Future<_i3.ProductModel> getProduct(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProduct, [id]),
@@ -520,6 +511,7 @@ class MockInternetConnectionChecker extends _i1.Mock
 /// A class which mocks [SharedPreferencesAsync].
 ///
 /// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
 class MockSharedPreferencesAsync extends _i1.Mock
     implements _i13.SharedPreferencesAsync {
   MockSharedPreferencesAsync() {

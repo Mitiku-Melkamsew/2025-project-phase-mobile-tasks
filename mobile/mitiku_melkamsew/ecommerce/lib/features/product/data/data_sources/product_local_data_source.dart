@@ -7,7 +7,6 @@ import '../models/product_data_model.dart';
 abstract class ProductLocalDataSource {
   Future<List<ProductModel>> getLastProducts();
   Future<void> cacheProducts(List<ProductModel> productsToCache);
-  Future<void> deleteProduct(String id);
   Future<ProductModel> getProduct(String id);
 }
 
@@ -37,27 +36,6 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
           .toList();
       return products;
     } else {
-      throw CacheException();
-    }
-  }
-
-  @override
-  Future<void> deleteProduct(String id) async {
-    final jsonString = await sharedPreferences.getString(CACHED_PRODUCTS);
-    if (jsonString != null) {
-      final List<dynamic> jsonList = json.decode(jsonString);
-      final products = jsonList
-          .map((json) => ProductModel.fromJson(json))
-          .toList();
-      products.removeWhere((product) => product.id == id);
-      final updatedJsonList = products
-          .map((product) => product.toJson())
-          .toList();
-      await sharedPreferences.setString(
-        CACHED_PRODUCTS,
-        json.encode(updatedJsonList),
-      );
-    }else{
       throw CacheException();
     }
   }

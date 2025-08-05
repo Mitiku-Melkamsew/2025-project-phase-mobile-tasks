@@ -29,17 +29,12 @@ class ProductRepositoryImpl implements ProductRepository {
         return Left(ServerFailure());
       }
     } else {
-      try {
-        final localRes = await localDataSource.deleteProduct(id);
-        return Right(localRes);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, ProductModel>> getProduct(String id) async {
+  Future<Either<Failure, Product>> getProduct(String id) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteProduct = await remoteDataSource.getProduct(id);
