@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../data.dart';
 import '../utils/product_list_view.dart';
 
 class Home extends StatefulWidget {
-  final ProductManager productManager;
-  const Home({super.key, required this.productManager});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -22,26 +20,8 @@ class _HomeState extends State<Home> {
           splashColor: const Color(0xff3f62f4),
           shape: const CircleBorder(),
           backgroundColor: const Color(0xff3F51F3),
-          onPressed: () async {
-            final res = await Navigator.of(context).pushNamed('/update');
-            if (res == null) {
-            } else if (res is int) {
-              setState(() {
-                widget.productManager.delete(res);
-              });
-            } else {
-              final result = res as Map;
-              setState(() {
-                Product p = Product(
-                  imageurl: 'assets/dress.jpg',
-                  name: result['name'],
-                  price: result['price'],
-                  category: result['category'],
-                  description: result['description'],
-                );
-                widget.productManager.addProduct(p: p);
-              });
-            }
+          onPressed: () {
+            Navigator.of(context).pushNamed('/update');
           },
           child: const Icon(Icons.add, color: Color(0xffffffff), size: 36),
         ),
@@ -124,7 +104,10 @@ class _HomeState extends State<Home> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9),
-                        border: Border.all(color: const Color(0xffdddddd), width: 1),
+                        border: Border.all(
+                          color: const Color(0xffdddddd),
+                          width: 1,
+                        ),
                       ),
                       child: Stack(
                         children: [
@@ -170,11 +153,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.only(right: 15),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed(
-                        '/search',
-                        arguments: widget.productManager.products.values
-                            .toList(),
-                      );
+                      Navigator.of(context).pushNamed('/search');
                     },
                     child: Container(
                       width: 40,
@@ -182,7 +161,10 @@ class _HomeState extends State<Home> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9),
-                        border: Border.all(color: const Color(0xffdddddd), width: 1),
+                        border: Border.all(
+                          color: const Color(0xffdddddd),
+                          width: 1,
+                        ),
                       ),
                       child: const Icon(Icons.search_rounded),
                     ),
@@ -191,12 +173,8 @@ class _HomeState extends State<Home> {
               ],
             ),
             const SizedBox(height: 19),
-            
-            Expanded(
-              child: ProductListView(
-                products: widget.productManager.products.values.toList(),
-              ),
-            ),
+
+            const Expanded(child: ProductListView.fromBloc()),
           ],
         ),
       ),

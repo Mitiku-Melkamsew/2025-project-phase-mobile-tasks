@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../data.dart';
+import '../../domain/entities/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  const ProductCard({
-    super.key,
-    required this.product
-  });
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +19,13 @@ class ProductCard extends StatelessWidget {
               topLeft: Radius.circular(16),
             ),
             child: Image.asset(
-              product.imageurl,
+              product.imageUrl,
               height: 160,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -54,19 +52,10 @@ class ProductCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      product.category,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Color(0xffaaaaaa),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                    const Row(
+                    Row(
                       children: [
                         Icon(Icons.star, size: 20, color: Color(0xffFFD700)),
                         Text(

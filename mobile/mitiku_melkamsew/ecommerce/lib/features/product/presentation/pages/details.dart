@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../data.dart';
+
+import '../../domain/entities/product.dart';
 
 class Details extends StatelessWidget {
   const Details({super.key});
@@ -29,7 +30,7 @@ class Details extends StatelessWidget {
                     topRight: Radius.circular(40),
                   ),
                   child: Image.asset(
-                    product.imageurl,
+                    product.imageUrl,
                     height: 250,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -66,20 +67,10 @@ class Details extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 12),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        product.category,
-                        style: const TextStyle(
-                          decoration: TextDecoration.none,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          color: Color(0xffaaaaaa),
-                        ),
-                      ),
-                      const Row(
+                      Row(
                         children: [
                           Icon(Icons.star, color: Color(0xffFFD700)),
                           Text(
@@ -236,7 +227,9 @@ class _SegmentState extends State<Segment> {
           },
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(60, 60),
-            backgroundColor: isSelected ? const Color(0xff3F51F3) : Colors.white,
+            backgroundColor: isSelected
+                ? const Color(0xff3F51F3)
+                : Colors.white,
             foregroundColor: isSelected ? Colors.white : Colors.black,
             padding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
@@ -244,7 +237,9 @@ class _SegmentState extends State<Segment> {
             ),
 
             side: BorderSide(
-              color: isSelected ? const Color(0xff3F51F3) : const Color(0xffffffff),
+              color: isSelected
+                  ? const Color(0xff3F51F3)
+                  : const Color(0xffffffff),
               width: 1,
             ),
           ),

@@ -49,6 +49,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     };
     final response = await client.put(
       Uri.parse('$baseUrl/${product.id}'),
+      headers: {'content-type': 'application/json'},
       body: jsonEncode(bodyRequest),
     );
 
@@ -71,8 +72,8 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<ProductModel> getProduct(String id) async {
-    final jsonString = await http.get(Uri.parse('$baseUrl/$id'));
-    if (jsonString.statusCode != 200) {
+    final jsonString = await client.get(Uri.parse('$baseUrl/$id'));
+    if (jsonString.statusCode == 200) {
       final jsonMap = jsonDecode(jsonString.body);
       final product = ProductModel.fromJson(jsonMap);
       return product;

@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -34,43 +33,86 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<CreateProductEvent>(_onCreateProductEvent);
   }
 
-Future<void> _onLoadAllProductsEvent(
+  Future<void> _onLoadAllProductsEvent(
     LoadAllProductsEvent event,
     Emitter<ProductState> emit,
   ) async {
     emit(LoadingState());
     final products = await getProducts();
     products.fold(
-      (failure) {
-        if (failure == ServerFailure){
-          emit(const ErrorState('Server Failure'));
-        }else{
-          emit(const ErrorState('Cache Failure'));
-        }
-        
-        },
-      (products) => emit(LoadedAllProductState(products))
+      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
+      (products) => emit(LoadedAllProductState(products)),
     );
-
   }
 
-void _onGetSingleProductEvent(
+  void _onGetSingleProductEvent(
     GetSingleProductEvent event,
     Emitter<ProductState> emit,
-  ) {}
+  ) async{
+    emit(LoadingState());
+    final result = await getProduct(event.id);
+    result.fold(
+      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
+      (product) => emit(LoadedProductState(product)),
+    );
+  }
 
-void _onUpdateProductEvent(
+  void _onUpdateProductEvent(
     UpdateProductEvent event,
     Emitter<ProductState> emit,
-  ) {}
+  ) async {
+    emit(LoadingState());
+    final result = await updateProduct(event.product);
+    result.fold(
+      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
+      (_) {
+        emit(const SuccessState('Updated successfully'));
+        add(LoadAllProductsEvent());
+      },
+    );
+  }
 
-void _onCreateProductEvent(
+  void _onCreateProductEvent(
     CreateProductEvent event,
     Emitter<ProductState> emit,
-  ) {}
+  ) async {
+    emit(LoadingState());
+    final result = await insertProduct(event.product);
+    result.fold(
+      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
+      (_) {
+        emit(const SuccessState('Created successfully'));
+        add(LoadAllProductsEvent());
+      },
+    );
+  }
 
-void _onDeleteProductEvent(
+  void _onDeleteProductEvent(
     DeleteProductEvent event,
     Emitter<ProductState> emit,
-  ) {}
+  ) async {
+    emit(LoadingState());
+    final result = await deleteProduct(event.id);
+    result.fold(
+      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
+      (_) {
+        emit(const SuccessState('Deleted successfully'));
+        add(LoadAllProductsEvent());
+      },
+    );
+  }
+
+  String _mapFailureToMessage(Failure failure) {
+    late final String message;
+    switch (failure) {
+      case ServerFailure():
+  message = 'Server Failure';
+      case CacheFailure():
+  message = 'Cache Failure';
+        break;
+      default:
+  message = 'Unexpected error';
+    }
+    return message;
+  }
 }

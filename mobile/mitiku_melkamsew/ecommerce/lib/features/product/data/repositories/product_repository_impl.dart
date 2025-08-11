@@ -56,7 +56,7 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<Either<Failure, void>> insertProduct(Product product) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteRes = remoteDataSource.insertProduct(product);
+        final remoteRes = await remoteDataSource.insertProduct(product);
         return Right(remoteRes);
       } on ServerException {
         return Left(ServerFailure());
@@ -70,7 +70,7 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<Either<Failure, void>> updateProduct(Product product) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteRes = remoteDataSource.updateProduct(product);
+        final remoteRes = await remoteDataSource.updateProduct(product);
         return Right(remoteRes);
       } on ServerException {
         return Left(ServerFailure());
@@ -93,7 +93,7 @@ class ProductRepositoryImpl implements ProductRepository {
         } else {
           productsToCache.addAll(remoteProducts);
         }
-        localDataSource.cacheProducts(productsToCache);
+        await localDataSource.cacheProducts(productsToCache);
         return Right(remoteProducts);
       } on ServerException {
         return Left(ServerFailure());

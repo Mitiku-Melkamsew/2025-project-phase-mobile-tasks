@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../data.dart';
 import '../utils/product_list_view.dart';
 
 class Search extends StatelessWidget {
@@ -8,8 +7,6 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final products =
-        ModalRoute.of(context)!.settings.arguments as List<Product>;
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -97,12 +94,9 @@ class Search extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 300,
-                child: ProductListView(products: products),
-              ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: SizedBox(height: 300, child: ProductListView.fromBloc()),
             ),
             const Text(
               'category',
