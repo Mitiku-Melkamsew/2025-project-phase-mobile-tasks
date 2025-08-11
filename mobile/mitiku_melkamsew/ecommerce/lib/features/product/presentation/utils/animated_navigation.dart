@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-Route createFadeRoute(Widget page, RouteSettings settings) {
+Route createFadeRoute(WidgetBuilder builder, RouteSettings settings) {
   return PageRouteBuilder(
     settings: settings,
     transitionDuration: const Duration(milliseconds: 800),
-    pageBuilder: (context, animation, secondaryAnimation) => page,
+    pageBuilder: (context, animation, secondaryAnimation) => builder(context),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var fadeAnimation = Tween<double>(
         begin: 0.0,

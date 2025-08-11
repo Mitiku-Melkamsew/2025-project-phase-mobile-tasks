@@ -18,12 +18,7 @@ class ProductCard extends StatelessWidget {
               topRight: Radius.circular(16),
               topLeft: Radius.circular(16),
             ),
-            child: Image.asset(
-              product.imageUrl,
-              height: 160,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            child: _buildImage(product.imageUrl),
           ),
 
           Padding(
@@ -78,4 +73,13 @@ class ProductCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _buildImage(String path) {
+  return Image.network(
+    path,
+    height: 160,
+    width: double.infinity,
+    fit: BoxFit.cover,
+  );
 }

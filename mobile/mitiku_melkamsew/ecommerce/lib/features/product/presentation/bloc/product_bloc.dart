@@ -37,6 +37,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     LoadAllProductsEvent event,
     Emitter<ProductState> emit,
   ) async {
+
     emit(LoadingState());
     final products = await getProducts();
     products.fold(
@@ -48,7 +49,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   void _onGetSingleProductEvent(
     GetSingleProductEvent event,
     Emitter<ProductState> emit,
-  ) async{
+  ) async {
+   
     emit(LoadingState());
     final result = await getProduct(event.id);
     result.fold(
@@ -61,57 +63,57 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     UpdateProductEvent event,
     Emitter<ProductState> emit,
   ) async {
+    
     emit(LoadingState());
     final result = await updateProduct(event.product);
-    result.fold(
-      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
-      (_) {
-        emit(const SuccessState('Updated successfully'));
-        add(LoadAllProductsEvent());
-      },
-    );
+    result.fold((failure) => emit(ErrorState(_mapFailureToMessage(failure))), (
+      _,
+    ) {
+      emit(const SuccessState('Updated successfully'));
+      add(LoadAllProductsEvent());
+    });
   }
 
   void _onCreateProductEvent(
     CreateProductEvent event,
     Emitter<ProductState> emit,
   ) async {
+   
     emit(LoadingState());
     final result = await insertProduct(event.product);
-    result.fold(
-      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
-      (_) {
-        emit(const SuccessState('Created successfully'));
-        add(LoadAllProductsEvent());
-      },
-    );
+    result.fold((failure) => emit(ErrorState(_mapFailureToMessage(failure))), (
+      _,
+    ) {
+      emit(const SuccessState('Created successfully'));
+      add(LoadAllProductsEvent());
+    });
   }
 
   void _onDeleteProductEvent(
     DeleteProductEvent event,
     Emitter<ProductState> emit,
   ) async {
+    
     emit(LoadingState());
     final result = await deleteProduct(event.id);
-    result.fold(
-      (failure) => emit(ErrorState(_mapFailureToMessage(failure))),
-      (_) {
-        emit(const SuccessState('Deleted successfully'));
-        add(LoadAllProductsEvent());
-      },
-    );
+    result.fold((failure) => emit(ErrorState(_mapFailureToMessage(failure))), (
+      _,
+    ) {
+      emit(const SuccessState('Deleted successfully'));
+      add(LoadAllProductsEvent());
+    });
   }
 
   String _mapFailureToMessage(Failure failure) {
     late final String message;
     switch (failure) {
       case ServerFailure():
-  message = 'Server Failure';
+        message = 'Server Failure';
       case CacheFailure():
-  message = 'Cache Failure';
+        message = 'Cache Failure';
         break;
       default:
-  message = 'Unexpected error';
+        message = 'Unexpected error';
     }
     return message;
   }

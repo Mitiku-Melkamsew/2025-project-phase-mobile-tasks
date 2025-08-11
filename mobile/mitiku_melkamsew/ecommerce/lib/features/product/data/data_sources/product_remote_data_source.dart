@@ -15,7 +15,7 @@ abstract class ProductRemoteDataSource {
 }
 
 const baseUrl =
-    'https://g5-flutter-learning-path-be.onrender.com/api/v1/products';
+    'https://g5-flutter-learning-path-be-tvum.onrender.com/api/v1/products';
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   final http.Client client;
@@ -90,7 +90,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      final List<dynamic> jsonList = jsonDecode(response.body);
+      final List<dynamic> jsonList = jsonDecode(response.body)['data'];
       return jsonList.map((json) => ProductModel.fromJson(json)).toList();
     } else {
       throw ServerException();

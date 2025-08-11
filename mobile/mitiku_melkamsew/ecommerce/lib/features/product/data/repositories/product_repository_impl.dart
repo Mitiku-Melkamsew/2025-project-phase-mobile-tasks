@@ -83,8 +83,10 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Either<Failure, List<Product>>> getProducts() async {
     if (await networkInfo.isConnected) {
+      
       try {
         final remoteProducts = await remoteDataSource.getProducts();
+        
         final List<ProductModel> productsToCache = [];
         if (remoteProducts.length >= 10) {
           for (var i = 0; i < 10; i++) {
@@ -96,9 +98,11 @@ class ProductRepositoryImpl implements ProductRepository {
         await localDataSource.cacheProducts(productsToCache);
         return Right(remoteProducts);
       } on ServerException {
+      
         return Left(ServerFailure());
       }
     } else {
+    
       try {
         final localProducts = await localDataSource.getLastProducts();
         return Right(localProducts);

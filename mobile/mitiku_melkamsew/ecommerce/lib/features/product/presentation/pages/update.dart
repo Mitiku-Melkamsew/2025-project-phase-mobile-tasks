@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domain/entities/product.dart';
+import '../bloc/product_bloc.dart';
 
 class Update extends StatelessWidget {
   const Update({super.key});
@@ -51,7 +55,10 @@ class Update extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: const Color(0xfff3f3f3),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xfff3f3f3), width: 1),
+                    border: Border.all(
+                      color: const Color(0xfff3f3f3),
+                      width: 1,
+                    ),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -103,15 +110,18 @@ class _Form extends State<Form> {
 
   void _onAdd() {
     final name = _pdtNameController.text;
-    final category = _categoryController.text;
     final price = double.tryParse(_priceController.text) ?? 0.0;
     final description = _descriptionController.text;
-    Navigator.of(context).pop({
-      'name': name,
-      'category': category,
-      'price': price,
-      'description': description,
-    });
+
+    final Product product = Product(
+      id: 'id',
+      imageUrl: 'imageUrl',
+      name: name,
+      price: price,
+      description: description,
+    );
+    context.read<ProductBloc>().add(UpdateProductEvent(product));
+    Navigator.of(context).pop();
   }
 
   void _onDelete(String id) {
